@@ -16,7 +16,7 @@
         <td>{{ student.firstName }}</td>
         <td>{{ student.lastName }}</td>
         <td>
-            <button type="button" class="btn btn-primary">View Results</button>
+            <a [routerLink]="['/students', student.id]" type="button" class="btn btn-primary">View Results</a>
         </td>
       </tr>
     </tbody>

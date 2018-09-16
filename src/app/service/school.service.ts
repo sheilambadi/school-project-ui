@@ -24,4 +24,8 @@ export class SchoolService {
     return this.httpClient.get<Result[]>(this.baseUrl + 'results');
   }
 
+  getStudentResultById(id): Observable<Result[]> {
+    return this.httpClient.get<Result[]>(this.baseUrl + 'students/' + id);
+  }
+
 }

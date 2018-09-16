@@ -9,6 +9,7 @@ import { StudentsComponent } from './students/students.component';
 import { ExamsComponent } from './exams/exams.component';
 import { ResultsComponent } from './results/results.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { StudentResultComponent } from './student-result/student-result.component';
 
 
 @NgModule({
@@ -17,12 +18,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     StudentsComponent,
     ExamsComponent,
     ResultsComponent,
-    NavbarComponent
+    NavbarComponent,
+    StudentResultComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
+      {
+        path: 'students/:id',
+        component: StudentResultComponent
+      },
       {
         path: 'students',
         component: StudentsComponent
