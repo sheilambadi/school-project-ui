@@ -1,6 +1,7 @@
+import { SchoolService } from './service/school.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { StudentsComponent } from './students/students.component';
@@ -18,9 +19,25 @@ import { NavbarComponent } from './navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {
+        path: 'students',
+        component: StudentsComponent
+      },
+      {
+        path: 'exams',
+        component: ExamsComponent
+      },
+      {
+        path: 'results',
+        component: ResultsComponent
+      }
+    ])
   ],
-  providers: [],
+  providers: [
+    SchoolService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
