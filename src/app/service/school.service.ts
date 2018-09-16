@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Student } from '../interfaces/student';
 import { Exam } from '../interfaces/exam';
+import { Result } from '../interfaces/result';
 
 @Injectable()
 export class SchoolService {
@@ -17,6 +18,10 @@ export class SchoolService {
 
   getExams(): Observable<Exam[]> {
     return this.httpClient.get<Exam[]>(this.baseUrl + 'exams');
+  }
+
+  getResults(): Observable<Result[]> {
+    return this.httpClient.get<Result[]>(this.baseUrl + 'results');
   }
 
 }

@@ -1,3 +1,4 @@
+import { SchoolService } from './../service/school.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsComponent implements OnInit {
 
-  constructor() { }
+  public results = [];
+
+  constructor(private service: SchoolService) { }
 
   ngOnInit() {
+    this.service.getResults().subscribe(data => {
+      this.results = data;
+      console.log(data);
+    });
   }
 
 }
