@@ -1,3 +1,4 @@
+import { SchoolService } from './../service/school.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exams.component.css']
 })
 export class ExamsComponent implements OnInit {
+  public exams = [];
 
-  constructor() { }
+  constructor(private service: SchoolService) { }
 
   ngOnInit() {
+    this.service.getExams().subscribe(data => {
+      this.exams = data;
+      console.log(data);
+    });
+
   }
 
 }
