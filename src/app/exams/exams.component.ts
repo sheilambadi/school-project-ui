@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamsComponent implements OnInit {
   public exams = [];
+  examName;
+  examBody;
 
   constructor(private service: SchoolService) { }
 
@@ -16,7 +18,17 @@ export class ExamsComponent implements OnInit {
       this.exams = data;
       console.log(data);
     });
+  }
 
+  addExam() {
+    this.examBody = {
+      examName: this.examName
+    };
+
+    // console.log(this.examBody);
+    this.service.postExams(this.examBody).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
