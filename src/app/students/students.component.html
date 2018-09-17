@@ -28,7 +28,8 @@
         <th scope="col">Admission No</th>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
-        <th scope="col">Results</th>
+        <th scope="col">View Result</th>
+        <th scope="col">Add Result</th>
       </tr>
     </thead>
     <tbody>
@@ -40,6 +41,9 @@
         <td>
           <a [routerLink]="['/students', student.id]" type="button" class="btn btn-primary">View Results</a>
         </td>
+        <td>
+            <a routerLink="/new/result" type="button" class="btn btn-primary">Add Result</a>
+          </td>
       </tr>
     </tbody>
   </table>
