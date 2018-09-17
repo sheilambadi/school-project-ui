@@ -1,6 +1,8 @@
 import { SchoolService } from './../service/school.service';
 import { Component, OnInit } from '@angular/core';
+import * as XLSX from 'xlsx';
 
+type AOA = any[][];
 @Component({
   selector: 'app-exams',
   templateUrl: './exams.component.html',
@@ -10,10 +12,19 @@ export class ExamsComponent implements OnInit {
   public exams = [];
   examName;
   examBody;
+  data: AOA;
+  jsonData;
+
+  reader;
+  bstr: string;
+  wb: XLSX.WorkBook;
+  wsname: string;
+  ws: XLSX.WorkSheet;
 
   constructor(private service: SchoolService) { }
 
   ngOnInit() {
+    // console.log('Data: ' + this.data);
     this.service.getExams().subscribe(data => {
       this.exams = data;
       console.log(data);
@@ -29,6 +40,55 @@ export class ExamsComponent implements OnInit {
     this.service.postExams(this.examBody).subscribe(data => {
       console.log(data);
     });
+  }
+
+  onFileChange(evt: any) {
+    // console.log(evt);
+
+    // Allow drag and drop
+    const target: DataTransfer = <DataTransfer>(evt.target);
+
+    if (target.files.length !== 1) {
+      console.log('Cannot use multiple files');
+    }
+
+    // read the loaded file
+    this.reader = new FileReader();
+
+    this.reader.onload = (e: any, fileData) => {
+      /* read workbook */
+      this.bstr = e.target.result;
+      this.wb = XLSX.read(this.bstr, { type: 'binary' });
+
+      /* grab first sheet */
+      this.wsname = this.wb.SheetNames[0];
+      this.ws = this.wb.Sheets[this.wsname];
+
+      // array
+      const vals = ['examName'];
+      /* save data */
+      this.data = <AOA>(XLSX.utils.sheet_to_json(this.ws, { header: 1 }));
+      this.jsonData = XLSX.utils.sheet_to_json(this.ws, { header: vals });
+
+      this.fileData(this.jsonData);
+    };
+
+    // console.log(this.data);
+    this.reader.readAsBinaryString(target.files[0]);
+  }
+
+
+
+  fileData(data) {
+    console.log(data);
+    // for (let i = 0; i < data.length; i++) {
+    //   this.examBody = {
+    //     name: data
+    //   };      // this.service.postExams(this.examBody).subscribe(exam => {
+    //   //   console.log(exam);
+    //   // });
+    // }
+    // console.log(this.examBody);
   }
 
 }
