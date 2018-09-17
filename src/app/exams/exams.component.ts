@@ -1,7 +1,6 @@
 import { SchoolService } from './../service/school.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
-import { log } from 'util';
 
 type AOA = any[][];
 @Component({
@@ -23,6 +22,7 @@ export class ExamsComponent implements OnInit {
   ws: XLSX.WorkSheet;
   vals;
   examBtn;
+  value1;
 
   constructor(private service: SchoolService) { }
 
@@ -76,32 +76,17 @@ export class ExamsComponent implements OnInit {
 
       this.examBtn.addEventListener('click', () => {
         for (let i = 0; i < this.jsonData.length; i++) {
-          this.examBody = {
-            examName: this.jsonData[i].examName
-          };
-
-          this.service.postExams(this.examBody).subscribe(examData => {
-            console.log(examData);
-          });
+          if (i !== 0) {
+            this.examBody = {
+              examName: this.jsonData[i].examName
+            };
+            this.service.postExams(this.examBody).subscribe(examData => {
+              console.log(examData);
+            });
+          }
         }
       });
     };
-
-    // console.log(this.data);
     this.reader.readAsBinaryString(target.files[0]);
   }
-
-
-  // fileData(data) {
-  //   console.log(data);
-  //   // for (let i = 0; i < data.length; i++) {
-  //   //   this.examBody = {
-  //   //     name: data
-  //   //   };      // this.service.postExams(this.examBody).subscribe(exam => {
-  //   //   //   console.log(exam);
-  //   //   // });
-  //   // }
-  //   // console.log(this.examBody);
-  // }
-
 }
