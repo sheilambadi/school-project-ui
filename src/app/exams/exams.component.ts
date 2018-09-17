@@ -1,6 +1,7 @@
 import { SchoolService } from './../service/school.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
+import { log } from 'util';
 
 type AOA = any[][];
 @Component({
@@ -20,10 +21,13 @@ export class ExamsComponent implements OnInit {
   wb: XLSX.WorkBook;
   wsname: string;
   ws: XLSX.WorkSheet;
+  vals;
+  examBtn;
 
   constructor(private service: SchoolService) { }
 
   ngOnInit() {
+    this.examBtn = document.getElementById('examFileBtn');
     // console.log('Data: ' + this.data);
     this.service.getExams().subscribe(data => {
       this.exams = data;
@@ -55,7 +59,7 @@ export class ExamsComponent implements OnInit {
     // read the loaded file
     this.reader = new FileReader();
 
-    this.reader.onload = (e: any, fileData) => {
+    this.reader.onload = (e: any) => {
       /* read workbook */
       this.bstr = e.target.result;
       this.wb = XLSX.read(this.bstr, { type: 'binary' });
@@ -65,12 +69,22 @@ export class ExamsComponent implements OnInit {
       this.ws = this.wb.Sheets[this.wsname];
 
       // array
-      const vals = ['examName'];
+      this.vals = ['examName'];
       /* save data */
       this.data = <AOA>(XLSX.utils.sheet_to_json(this.ws, { header: 1 }));
-      this.jsonData = XLSX.utils.sheet_to_json(this.ws, { header: vals });
+      this.jsonData = XLSX.utils.sheet_to_json(this.ws, { header: this.vals });
 
-      this.fileData(this.jsonData);
+      this.examBtn.addEventListener('click', () => {
+        for (let i = 0; i < this.jsonData.length; i++) {
+          this.examBody = {
+            examName: this.jsonData[i].examName
+          };
+
+          this.service.postExams(this.examBody).subscribe(examData => {
+            console.log(examData);
+          });
+        }
+      });
     };
 
     // console.log(this.data);
@@ -78,17 +92,16 @@ export class ExamsComponent implements OnInit {
   }
 
 
-
-  fileData(data) {
-    console.log(data);
-    // for (let i = 0; i < data.length; i++) {
-    //   this.examBody = {
-    //     name: data
-    //   };      // this.service.postExams(this.examBody).subscribe(exam => {
-    //   //   console.log(exam);
-    //   // });
-    // }
-    // console.log(this.examBody);
-  }
+  // fileData(data) {
+  //   console.log(data);
+  //   // for (let i = 0; i < data.length; i++) {
+  //   //   this.examBody = {
+  //   //     name: data
+  //   //   };      // this.service.postExams(this.examBody).subscribe(exam => {
+  //   //   //   console.log(exam);
+  //   //   // });
+  //   // }
+  //   // console.log(this.examBody);
+  // }
 
 }
