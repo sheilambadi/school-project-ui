@@ -39,4 +39,8 @@ export class SchoolService {
     return this.httpClient.post<Exam>(this.baseUrl + 'exams/new', exam, this.httpOptions);
   }
 
+  postStudent(student: Student): Observable<Student> {
+    return this.httpClient.post<Student>(this.baseUrl + 'students/new', student, this.httpOptions);
+  }
+
 }
