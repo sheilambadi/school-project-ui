@@ -11,8 +11,6 @@ import { ExamsComponent } from './exams/exams.component';
 import { ResultsComponent } from './results/results.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { StudentResultComponent } from './student-result/student-result.component';
-import { AddStudentComponent } from './add-student/add-student.component';
-import { AddExamComponent } from './add-exam/add-exam.component';
 import { AddResultComponent } from './add-result/add-result.component';
 
 
@@ -24,8 +22,6 @@ import { AddResultComponent } from './add-result/add-result.component';
     ResultsComponent,
     NavbarComponent,
     StudentResultComponent,
-    AddStudentComponent,
-    AddExamComponent,
     AddResultComponent
   ],
   imports: [
@@ -38,16 +34,8 @@ import { AddResultComponent } from './add-result/add-result.component';
         component: StudentResultComponent
       },
       {
-        path: 'new/student',
-        component: AddStudentComponent
-      },
-      {
         path: 'students',
         component: StudentsComponent
-      },
-      {
-        path: 'new/exam',
-        component: AddExamComponent
       },
       {
         path: 'exams',
@@ -60,6 +48,11 @@ import { AddResultComponent } from './add-result/add-result.component';
       {
         path: 'results',
         component: ResultsComponent
+      },
+      {
+        path: '**',
+        redirectTo: '/students',
+        pathMatch: 'full'
       }
     ])
   ],
