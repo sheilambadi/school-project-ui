@@ -2,6 +2,7 @@ import { SchoolService } from '../service/school.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import {  saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
 type AOA = any[][];
 
@@ -26,7 +27,7 @@ export class AddExamComponent implements OnInit {
   examBtn;
   value1;
 
-  constructor(private service: SchoolService) { }
+  constructor(private service: SchoolService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -46,6 +47,7 @@ export class AddExamComponent implements OnInit {
     // console.log(this.examBody);
     this.service.postExams(this.examBody).subscribe(data => {
       console.log(data);
+      this.router.navigate(['/exams']);
     });
   }
 
@@ -92,6 +94,7 @@ export class AddExamComponent implements OnInit {
             };
             this.service.postExams(this.examBody).subscribe(examData => {
               console.log(examData);
+              this.router.navigate(['/exams']);
             });
           }
         }
