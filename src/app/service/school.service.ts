@@ -36,6 +36,10 @@ export class SchoolService {
     return this.httpClient.get<Result[]>(this.baseUrl + 'students/' + id);
   }
 
+  getStudentExam(studentId, examId): Observable<Result> {
+    return this.httpClient.get<Result>(this.baseUrl + 'students/' + studentId + '/' + examId);
+  }
+
   postExams(exam: Exam): Observable<Exam> {
     return this.httpClient.post<Exam>(this.baseUrl + 'exams/new', exam, this.httpOptions);
   }

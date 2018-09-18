@@ -13,14 +13,14 @@ export class ResultsComponent implements OnInit {
   resultData;
 
   constructor(private service: SchoolService) {
-    this.service.getResults().subscribe((res) => {
+    this.service.getStudentExam(1, 2).subscribe((res) => {
       this.options = {
-        title: { text: 'Performance per Subject', },
+        title: { text: res[0].examId.examName + ' Performance' },
         series: [{
           // tslint:disable-next-line:max-line-length
-          data: [res[1].english, res[1].math, res[1].kiswahili, res[1].chemistry,
-          res[1].physics, res[1].biology, res[1].history, res[1].geography, res[1].cre],
-          name: 'First Exam'
+          data: [res[0].english, res[0].math, res[0].kiswahili, res[0].chemistry,
+          res[0].physics, res[0].biology, res[0].history, res[0].geography, res[0].cre],
+          name: res[0].examId.examName
         }],
         xAxis: {
           categories: ['English', 'Maths', 'Kiswahili', 'Chemistry', 'Physics', 'Biology', 'History', 'Geography', 'CRE']

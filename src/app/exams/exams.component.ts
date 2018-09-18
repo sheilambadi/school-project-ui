@@ -18,5 +18,4 @@ export class ExamsComponent implements OnInit {
       console.log(data);
     });
   }
-
 }
