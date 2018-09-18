@@ -1,6 +1,7 @@
-import { SchoolService } from './../service/school.service';
+import { SchoolService } from '../service/school.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
+import { saveAs } from '../../../node_modules/file-saver/FileSaver';
 
 type AOA = any[][];
 @Component({
@@ -37,6 +38,13 @@ export class AddStudentComponent implements OnInit {
     // console.log(this.examBody);
     this.service.postExams(this.examBody).subscribe(data => {
       console.log(data);
+    });
+  }
+
+  downloadExamExcel() {
+    this.service.downloadExamExcel().subscribe((data) => {
+      console.log(data);
+      saveAs(data, 'exam-list.xlsx');
     });
   }
 

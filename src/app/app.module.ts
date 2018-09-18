@@ -1,3 +1,4 @@
+import { Student } from './interfaces/student';
 import { SchoolService } from './service/school.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
     NavbarComponent,
     StudentResultComponent,
     AddResultComponent,
-    AddStudentComponent
+    AddStudentComponent,
   ],
   imports: [
     BrowserModule,

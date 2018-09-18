@@ -18,6 +18,7 @@ export class SchoolService {
   };
 
   baseUrl = 'http://localhost:8080/school-project/api/school/';
+  excelUrl = 'http://localhost:8080/school-project/api/excel/';
 
   getStudents(): Observable<Student[]> {
     return this.httpClient.get<Student[]>(this.baseUrl + 'students');
@@ -41,5 +42,9 @@ export class SchoolService {
 
   postStudent(student: Student): Observable<Student> {
     return this.httpClient.post<Student>(this.baseUrl + 'students/new', student, this.httpOptions);
+  }
+
+  downloadExamExcel() {
+    return this.httpClient.get(this.excelUrl + 'exams', {responseType: 'blob'});
   }
 }
