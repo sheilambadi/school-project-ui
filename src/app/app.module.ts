@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { StudentResultComponent } from './student-result/student-result.component';
 import { AddResultComponent } from './add-result/add-result.component';
 import { AddStudentComponent } from './add-student/add-student.component';
+import { AddExamComponent } from './add-exam/add-exam.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
     StudentResultComponent,
     AddResultComponent,
     AddStudentComponent,
+    AddExamComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,12 +39,16 @@ import { AddStudentComponent } from './add-student/add-student.component';
         component: StudentResultComponent
       },
       {
+        path: 'new/students',
+        component: AddStudentComponent
+      },
+      {
         path: 'students',
         component: StudentsComponent
       },
       {
         path: 'new/exams',
-        component: AddStudentComponent
+        component: AddExamComponent
       },
       {
         path: 'exams',
