@@ -6,8 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-result.component.css']
 })
 export class AddResultComponent implements OnInit {
-
-  constructor() { }
+  options: Object;
+  constructor() {
+    this.options = {
+      title : { text : 'simple chart' },
+      series: [{
+          data: [29.9, 71.5, 106.4, 129.2],
+      }],
+      xAxis: {
+        categories: ['Apples', 'Bananas', 'Oranges', 'Pines']
+    }
+  };
+  }
 
   ngOnInit() {
   }
