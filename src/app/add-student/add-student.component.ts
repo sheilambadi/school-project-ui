@@ -1,7 +1,7 @@
 import { SchoolService } from '../service/school.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
-import { saveAs } from '../../../node_modules/file-saver/FileSaver';
+import {  saveAs } from 'file-saver';
 
 type AOA = any[][];
 @Component({
@@ -27,6 +27,13 @@ export class AddStudentComponent implements OnInit {
   constructor(private service: SchoolService) { }
 
   ngOnInit() {
+    // this.examBtn = document.getElementById('examFileBtn');
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterViewInit() {
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
     this.examBtn = document.getElementById('examFileBtn');
   }
 
