@@ -1,3 +1,22 @@
-<p>
-  Add student works
-</p>
+<div class="container mt-3">
+    <div class="card">
+      <div class="card-header">
+        <strong>Add Student</strong>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <input [(ngModel)]="admNo" name="admNo" type="text" class="form-control" id="admNo" placeholder="Admission No.">
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="firstName" name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="lastName" name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="addStudent()">Add Student</button>
+        </form>
+      </div>
+    </div>
+  
+  </div>

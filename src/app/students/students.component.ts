@@ -8,10 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsComponent implements OnInit {
   public students = [];
-  admNo;
-  firstName;
-  lastName;
-  studentBody;
 
   constructor(private service: SchoolService) { }
 
@@ -21,19 +17,4 @@ export class StudentsComponent implements OnInit {
       console.log(data);
     });
   }
-
-  addStudent() {
-    this.studentBody = {
-      admNo: this.admNo,
-      firstName: this.firstName,
-      lastName: this.lastName
-    };
-
-    // console.log(this.studentBody);
-
-    this.service.postStudent(this.studentBody).subscribe(data => {
-      console.log(data);
-    });
-  }
-
 }
