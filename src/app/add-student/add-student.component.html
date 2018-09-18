@@ -1,4 +1,16 @@
-<div class="container mt-3">
+<div class="container mt-3 mb-3">
+  <div class="row">
+    <div class="col">
+      <input name="options" [(ngModel)]="options" type="radio" [value]="true" [checked]="!options">Input student
+      Details
+    </div>
+    <div class="col">
+      <input name="options" [(ngModel)]="options" type="radio" [value]="false" [checked]="options">Upload Excel File
+    </div>
+  </div>
+</div>
+
+<div *ngIf="options" class="container mt-3">
   <div class="card">
     <div class="card-header">
       <strong>Add Student</strong>
@@ -20,14 +32,15 @@
   </div>
 </div>
 
-<div class="container mt-3">
+<div *ngIf="!options" class="container mt-3">
   <div class="card">
     <div class="card-header">
       <strong>Add Exam Excel File</strong>
     </div>
 
     <div class="card-body">
-      <p> <a (click)="downloadStudentExcel()" routerLink="/new/students">Download</a> this file and use it to upload data
+      <p> <a (click)="downloadStudentExcel()" routerLink="/new/students">Download</a> this file and use it to upload
+        data
         (Leave column headers as they are)</p>
       <div class="form-group">
         <label for="fileName">Select Excel File</label><br>
