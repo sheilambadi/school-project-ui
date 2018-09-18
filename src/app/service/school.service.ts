@@ -47,4 +47,8 @@ export class SchoolService {
   downloadExamExcel() {
     return this.httpClient.get(this.excelUrl + 'exams', {responseType: 'blob'});
   }
+
+  downloadStudentExcel() {
+    return this.httpClient.get(this.excelUrl + 'students', {responseType: 'blob'});
+  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SchoolService } from '../service/school.service';
+import * as XLSX from 'xlsx';
+import {  saveAs } from 'file-saver';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,11 +27,16 @@ export class AddStudentComponent implements OnInit {
       lastName: this.lastName
     };
 
-    // console.log(this.studentBody);
-
     this.service.postStudent(this.studentBody).subscribe(data => {
       console.log(data);
       this.router.navigate(['/students']);
+    });
+  }
+
+  downloadStudentExcel() {
+    this.service.downloadStudentExcel().subscribe((data) => {
+      console.log(data);
+      saveAs(data, 'students-list.xlsx');
     });
   }
 }
