@@ -12,7 +12,12 @@
 
     <div class="col">
       <div class="card">
-        Hi
+        <div class="card-body">
+          <h5 class="card-title">Choose Exam</h5>
+          <select (change)="onChange($event.target.value)">
+            <option *ngFor="let exam of exams" value="{{exam.id}}">{{ exam.examName }}</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
