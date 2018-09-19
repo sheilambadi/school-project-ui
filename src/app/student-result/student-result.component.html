@@ -15,6 +15,7 @@
         <div class="card-body">
           <h5 class="card-title">Choose Exam</h5>
           <select (change)="onChange($event.target.value)">
+            <option disabled selected value>Select an Exam</option>
             <option *ngFor="let exam of exams" value="{{exam.id}}">{{ exam.examName }}</option>
           </select>
         </div>

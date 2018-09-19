@@ -55,6 +55,7 @@ export class StudentResultComponent implements OnInit {
 
   onChange(examId) {
     this.service.getStudentExam(this.id, examId).subscribe((res) => {
+      console.log('Exam id' + examId);
       this.results = res;
       this.options = {
         title: { text: res[0].examId.examName + ' Performance' },
