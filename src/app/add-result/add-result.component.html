@@ -1,1 +1,61 @@
-<chart [options]="options"></chart>
+<form>
+  <div class="card mx-3 my-3">
+    <div class="container mt-3 d-flex justify-content-center">
+      <div class="row mb-3">
+        <div class="col">
+          <h5 class="card-title">Choose Exam</h5>
+          <select (change)="onChange($event.target.value)">
+            <option disabled selected value>Select an Exam</option>
+            <option *ngFor="let exam of exams" value="{{exam.id}}">{{ exam.examName }}</option>
+          </select>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <input [(ngModel)]="english" name="english" type="number" class="form-control" id="english" placeholder="English">
+          </div>
+
+          <div class="form-group">
+            <input [(ngModel)]="maths" name="maths" type="number" class="form-control" id="maths" placeholder="Maths">
+          </div>
+
+          <div class="form-group">
+            <input [(ngModel)]="kiswahili" name="kiswahili" type="number" class="form-control" id="kiswahili"
+              placeholder="Kiswahili">
+          </div>
+
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <input [(ngModel)]="chemistry" name="chemistry" type="number" class="form-control" id="chemistry" placeholder="Chemistry">
+          </div>
+
+          <div class="form-group">
+            <input [(ngModel)]="biology" name="biology" type="number" class="form-control" id="biology" placeholder="Biology">
+          </div>
+
+          <div class="form-group">
+            <input [(ngModel)]="physics" name="physics" type="number" class="form-control" id="physics" placeholder="Physics">
+          </div>
+
+          <button class="btn btn-primary" (click)=sendResults()>
+            Submit Result
+          </button>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <input [(ngModel)]="history" name="history" type="number" class="form-control" id="history" placeholder="History">
+          </div>
+
+          <div class="form-group">
+            <input [(ngModel)]="geography" name="geography" type="number" class="form-control" id="geography" placeholder="Geography">
+          </div>
+
+          <div class="form-group">
+            <input [(ngModel)]="cre" name="cre" type="number" class="form-control" id="cre" placeholder="CRE">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>

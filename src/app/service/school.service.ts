@@ -48,11 +48,22 @@ export class SchoolService {
     return this.httpClient.post<Student>(this.baseUrl + 'students/new', student, this.httpOptions);
   }
 
+  postResults(result: Result): Observable<Result> {
+    return this.httpClient.post<Result>(this.baseUrl + 'results/new', result, this.httpOptions);
+  }
   downloadExamExcel() {
     return this.httpClient.get(this.excelUrl + 'exams', {responseType: 'blob'});
   }
 
   downloadStudentExcel() {
     return this.httpClient.get(this.excelUrl + 'students', {responseType: 'blob'});
+  }
+
+  getStudentById(id: number): Observable<Student> {
+    return this.httpClient.get<Student>(this.baseUrl + 'student/data/' + id);
+  }
+
+  getExamById(id: number): Observable<Exam> {
+    return this.httpClient.get<Exam>(this.baseUrl + 'exam/data/' + id);
   }
 }

@@ -41,6 +41,10 @@ declare var require: any;
         component: StudentResultComponent
       },
       {
+        path: 'students/new/:id',
+        component: AddResultComponent
+      },
+      {
         path: 'new/students',
         component: AddStudentComponent
       },
@@ -55,10 +59,6 @@ declare var require: any;
       {
         path: 'exams',
         component: ExamsComponent
-      },
-      {
-        path: 'new/result',
-        component: AddResultComponent
       },
       {
         path: 'results',
