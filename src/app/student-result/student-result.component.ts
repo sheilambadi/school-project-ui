@@ -8,8 +8,9 @@ import { SchoolService } from '../service/school.service';
   styleUrls: ['./student-result.component.css']
 })
 export class StudentResultComponent implements OnInit {
-  public results = [];
+  public results;
   id;
+  options: Object;
 
   constructor(private route: ActivatedRoute, private service: SchoolService) { }
 
@@ -18,9 +19,30 @@ export class StudentResultComponent implements OnInit {
       // console.log(params);
       this.id = params.get('id');
 
-      this.service.getStudentResultById(this.id).subscribe(data => {
-        this.results = data;
-        console.log(data);
+      // this.service.getStudentResultById(this.id).subscribe(data => {
+      //   this.results = data;
+      //   console.log(data);
+      // });
+
+      this.service.getStudentExam(this.id, 2).subscribe((res) => {
+        this.results = res;
+        this.options = {
+          title: { text: res[0].examId.examName + ' Performance' },
+          series: [{
+            // tslint:disable-next-line:max-line-length
+            data: [res[0].english, res[0].math, res[0].kiswahili, res[0].chemistry,
+            res[0].physics, res[0].biology, res[0].history, res[0].geography, res[0].cre],
+            name: res[0].examId.examName
+          }],
+          xAxis: {
+            categories: ['English', 'Maths', 'Kiswahili', 'Chemistry', 'Physics', 'Biology', 'History', 'Geography', 'CRE']
+          },
+          yAxis: {
+            title: {
+              text: 'Marks in %'
+            }
+          }
+        };
       });
     });
   }
