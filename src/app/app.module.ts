@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ChartModule } from 'angular2-highcharts'
+import { ChartModule } from 'angular2-highcharts';
 
 import { AppComponent } from './app.component';
 import { StudentsComponent } from './students/students.component';
@@ -65,6 +65,10 @@ declare var require: any;
       {
         path: 'results',
         component: ResultsComponent
+      },
+      {
+        path: 'new/results',
+        component: NewStudentsResultComponent
       },
       {
         path: '**',
