@@ -70,4 +70,8 @@ export class SchoolService {
   getExamById(id: number): Observable<Exam> {
     return this.httpClient.get<Exam>(this.baseUrl + 'exam/data/' + id);
   }
+
+  getResultsByExam(id): Observable<Result[]> {
+    return this.httpClient.get<Result[]>(this.baseUrl + 'exams/' + id);
+  }
 }

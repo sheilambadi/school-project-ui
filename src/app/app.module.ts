@@ -16,6 +16,7 @@ import { StudentResultComponent } from './student-result/student-result.componen
 import { AddResultComponent } from './add-result/add-result.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { AddExamComponent } from './add-exam/add-exam.component';
+import { NewStudentsResultComponent } from './new-students-result/new-students-result.component';
 
 declare var require: any;
 @NgModule({
@@ -29,6 +30,7 @@ declare var require: any;
     AddResultComponent,
     AddStudentComponent,
     AddExamComponent,
+    NewStudentsResultComponent,
   ],
   imports: [
     BrowserModule,
