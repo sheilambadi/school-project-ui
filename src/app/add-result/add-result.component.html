@@ -26,7 +26,8 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <input [(ngModel)]="chemistry" name="chemistry" type="number" class="form-control" id="chemistry" placeholder="Chemistry">
+            <input [(ngModel)]="chemistry" name="chemistry" type="number" class="form-control" id="chemistry"
+              placeholder="Chemistry">
           </div>
 
           <div class="form-group">
@@ -47,7 +48,8 @@
           </div>
 
           <div class="form-group">
-            <input [(ngModel)]="geography" name="geography" type="number" class="form-control" id="geography" placeholder="Geography">
+            <input [(ngModel)]="geography" name="geography" type="number" class="form-control" id="geography"
+              placeholder="Geography">
           </div>
 
           <div class="form-group">
@@ -59,3 +61,26 @@
   </div>
 
 </form>
+
+<div class="container">
+  <div class="card-body">
+    <p> <a (click)="downloadResultsExcel()" routerLink="">Download</a> this file and use it to upload data
+      (Leave column headers as they are)</p>
+    <div class="form-group">
+      <label for="fileName">Select Excel File</label><br>
+      <input type="file" class="form-control" accept=".xlsx, .xls" name="fileName" id="fileName" (change)="onFileChange($event)">
+    </div>
+    <button type="submit" class="btn btn-dark" id="studentFileBtn">Add Students From File</button>
+
+  </div>
+
+  <div class="container mt-3">
+    <table class="table table-striped table-bordered">
+      <tr *ngFor="let row of data">
+        <td *ngFor="let val of row">
+          {{val}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

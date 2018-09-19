@@ -13,7 +13,7 @@ export class SchoolService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
+      'Content-Type': 'application/json'
     })
   };
 
@@ -52,11 +52,15 @@ export class SchoolService {
     return this.httpClient.post<Result>(this.baseUrl + 'results/new', result, this.httpOptions);
   }
   downloadExamExcel() {
-    return this.httpClient.get(this.excelUrl + 'exams', {responseType: 'blob'});
+    return this.httpClient.get(this.excelUrl + 'exams', { responseType: 'blob' });
   }
 
   downloadStudentExcel() {
-    return this.httpClient.get(this.excelUrl + 'students', {responseType: 'blob'});
+    return this.httpClient.get(this.excelUrl + 'students', { responseType: 'blob' });
+  }
+
+  downloadResultExcel() {
+    return this.httpClient.get(this.excelUrl + 'results', { responseType: 'blob' });
   }
 
   getStudentById(id: number): Observable<Student> {
